@@ -1,6 +1,7 @@
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Card, Icon, Image } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 
 class AvatarImage extends Component {
   constructor() {
