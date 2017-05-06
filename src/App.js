@@ -11,8 +11,8 @@ class App extends Component {
       <div className="App">
         <AppHeader />
         <ExampleCard
-          avatar="matthew" name="Matthew" joinedYear="2015" job="a musician"
-          homeCity="Nashville" friendCount="22"
+          avatar="matthew" name="Matthew" joinedYear={2015} job="a musician"
+          homeCity="Nashville" friendCount={22}
         />
       </div>
     );

@@ -1,25 +1,9 @@
 
-import React, { Component, PropTypes } from 'react';
-import { Card, Icon, Image } from 'semantic-ui-react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Card, Icon } from 'semantic-ui-react';
 
-class AvatarImage extends Component {
-  constructor() {
-    super();
-    this.state = {
-      basePath: 'https://react.semantic-ui.com/assets/images/avatar/large/',
-      format: '.png',
-    };
-  }
-
-  render() {
-    const srcPath = this.state.basePath + this.props.name + this.state.format;
-    return <Image src={srcPath} />;
-  }
-}
-
-AvatarImage.propTypes = {
-  name: PropTypes.string.isRequired,
-};
+import AvatarImage from './AvatarImage';
 
 class ExampleCard extends Component {
   render() {
