@@ -10,12 +10,10 @@ class AvatarImage extends Component {
       basePath: 'https://react.semantic-ui.com/assets/images/avatar/large/',
       format: '.png',
     };
-  };
+  }
 
   render() {
-    const srcPath = () => {
-      return [this.state.basePath, this.props.name, this.state.format].join('');
-    };
+    const srcPath = () => [this.state.basePath, this.props.name, this.state.format].join('');
 
     return <Image src={srcPath()} />;
   }

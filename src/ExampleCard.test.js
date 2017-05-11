@@ -1,34 +1,32 @@
 
 import React from 'react';
-import { render } from 'enzyme';
-import ExampleCard from './ExampleCard';
 import url from 'url';
 import ReactTestUtils from 'react-dom/test-utils';
 
+import ExampleCard from './ExampleCard';
+
 const defaultState = {
- avatar: 'matthew',
- friendCount: 22,
- homeCity: 'Nashville',
- jobName: 'a musician',
- joinedYear: 2015,
- memberName: 'Matthew'
+  avatar: 'matthew',
+  friendCount: 22,
+  homeCity: 'Nashville',
+  jobName: 'a musician',
+  joinedYear: 2015,
+  memberName: 'Matthew',
 };
 
-const _renderCard = (state) => {
-  return ReactTestUtils.renderIntoDocument(<ExampleCard
-    avatar={state.avatar} friendCount={state.friendCount}
-    homeCity={state.homeCity} job={state.jobName} joinedYear={state.joinedYear}
-    name={state.memberName}
-    />);
-};
+const fnRenderCard = state => ReactTestUtils.renderIntoDocument(<ExampleCard
+  avatar={state.avatar} friendCount={state.friendCount}
+  homeCity={state.homeCity} job={state.jobName} joinedYear={state.joinedYear}
+  name={state.memberName}
+/>);
 
-const _card = (state = defaultState) => {
-  const rendered = _renderCard(state);
+const renderedCard = (state = defaultState) => {
+  const rendered = fnRenderCard(state);
   return ReactTestUtils.findRenderedDOMComponentWithClass(rendered, 'card ui');
 };
 
 describe('renders expected markup for', () => {
-  let card = _card();
+  const card = renderedCard();
 
   describe('the outer container, which', () => {
     it('exists as a div with "ui" and "card" styles', () => {
@@ -64,10 +62,10 @@ describe('renders expected markup for', () => {
   }); // describe('the first child element, which' ...)
 
   describe('the second child element, which', () => {
-    const content = card.children[1]
+    const content = card.children[1];
 
     it('is a div with the "content" class name', () => {
-      const expected = /^<div class="content">.+?<\/div>$/
+      const expected = /^<div class="content">.+?<\/div>$/;
       expect(content.outerHTML).toMatch(expected);
     });
 
@@ -82,7 +80,7 @@ describe('renders expected markup for', () => {
     });
 
     it('has a second child as a div with the "meta" class name', () => {
-      const expected = /^<div class="meta">.+?<\/div>$/
+      const expected = /^<div class="meta">.+?<\/div>$/;
       const meta = content.children[1];
 
       expect(meta.outerHTML).toMatch(expected);
@@ -90,17 +88,17 @@ describe('renders expected markup for', () => {
 
     it('has a third child as a div with the "description" class name', () => {
       const descrip = content.children[2];
-      const expected = /^<div class="description">.+?<\/div>$/
+      const expected = /^<div class="description">.+?<\/div>$/;
 
       expect(descrip.outerHTML).toMatch(expected);
     });
   }); // describe('the second child element, which' ...)
 
   describe('the third child element, which', () => {
-    const extraContent = card.children[2]
+    const extraContent = card.children[2];
 
     it('is a div with the CSS styles "extra" and "content"', () => {
-      const expected = /^<div class="extra content">.+?<\/div>$/
+      const expected = /^<div class="extra content">.+?<\/div>$/;
 
       expect(extraContent.outerHTML).toMatch(expected);
     });
@@ -132,7 +130,7 @@ describe('correctly reflects specified prop values, including', () => {
   describe('simple values for', () => {
     describe('name', () => {
       afterEach(() => {
-        const actual = _card(state).children[1].children[0].innerHTML;
+        const actual = renderedCard(state).children[1].children[0].innerHTML;
         expect(actual).toEqual(state.memberName);
       });
 
@@ -156,9 +154,9 @@ describe('correctly reflects specified prop values, including', () => {
           // Third child element of div.card is div.extra.content
           //   First child of that is the embedded 'a' element
           //     Text of the 'a' element is 'NN friends', where NN is a number
-          const friendStr = _card(state).children[2].children[0]
+          const friendStr = renderedCard(state).children[2].children[0]
             .text.split(' ')[0];
-          expect(parseInt(friendStr)).toEqual(state.friendCount);
+          expect(parseInt(friendStr, 10)).toEqual(state.friendCount);
         });
 
         it('with a positive integer', () => {

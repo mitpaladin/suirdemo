@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom';
 
 import App from './App';
 /* eslint-disable import/first */
@@ -15,6 +15,8 @@ ReactDOM.render((
   document.getElementById('root'),
 );
 
+/* eslint-disable no-undef */
 if (module.hot) {
   module.hot.accept();
-};
+}
+/* eslint-enable no-undef */

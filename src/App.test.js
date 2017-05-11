@@ -1,16 +1,16 @@
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { MemoryRouter } from 'react-router-dom'
+// import ReactDOM from 'react-dom';
+import { MemoryRouter } from 'react-router-dom';
 import ReactTestUtils from 'react-dom/test-utils';
 
 import App from './App';
 
-it('renders NotFound component by default', () => {
+it('renders NotFound component for an invalid route', () => {
   const rendered = ReactTestUtils.renderIntoDocument(
-    <MemoryRouter initialEntries={[ '/' ]}>
+    <MemoryRouter initialEntries={['/bogus']}>
       <App />
-    </MemoryRouter>
+    </MemoryRouter>,
   );
   const el = ReactTestUtils.findRenderedDOMComponentWithClass(rendered, 'not-found');
   expect(el.tagName.toLowerCase()).toEqual('div');
@@ -18,9 +18,9 @@ it('renders NotFound component by default', () => {
 
 it('renders ExampleCard component on path "/card"', () => {
   const rendered = ReactTestUtils.renderIntoDocument(
-    <MemoryRouter initialEntries={[ '/card' ]}>
+    <MemoryRouter initialEntries={['/card']}>
       <App />
-    </MemoryRouter>
+    </MemoryRouter>,
   );
   const el = ReactTestUtils.findRenderedDOMComponentWithClass(rendered, 'card');
   expect(el.tagName.toLowerCase()).toEqual('div');
