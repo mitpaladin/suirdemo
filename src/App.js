@@ -15,7 +15,7 @@ const DemoCard = () => (
 )
 
 const NotFound = () => (
-  <div>
+  <div className="not-found">
     <h1>To infinity, and beyond!</h1>
     <p>You are in a maze of twisty little passages, all alike. Go back, while
     you still can. Try <code>/card</code> to see something else.</p>
