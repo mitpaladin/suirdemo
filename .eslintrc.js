@@ -44,6 +44,9 @@ module.exports = {
     "babel"
   ],
   rules: {
+    // Cleanup per CI running ESLint w/o same failures on dev system. Natch.
+    "react/jsx-tag-spacing": [2, { 'before-self-closing': 'always' }],
+    "jsx-a11y/img-has-alt": [2],
     // These are disabled to silence ESLint warnings; something, someplace is
     // attempting to inspect/change the rule settings (which at one time had
     // default values). When the definitions of the defaults were removed, not
